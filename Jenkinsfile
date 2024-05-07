@@ -6,8 +6,8 @@ pipeline {
             steps {
                 // Build Docker image
                 script {
-                    mvn clean install
-                    docker.build('week2devops')
+                    sh 'mvn clean install'
+                    docker.build('week2devops .')
                     docker.stop('week2cont')
                     docker.rm('week2cont')
                 }
