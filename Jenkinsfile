@@ -18,7 +18,7 @@ pipeline {
             steps {
                 // Run tests inside the Docker container
                 script {
-                    def testContainer = docker.image('my-java-app').inside {
+                    def testContainer = docker.image('week2devops').inside {
                         sh 'mvn test'
                     }
                     // Remove the test container after tests complete
