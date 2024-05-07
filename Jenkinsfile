@@ -1,12 +1,12 @@
 pipeline {
-    agent { docker { image 'maven:3.9.6-eclipse-temurin-17-alpine' } }
+    agent any
 
     stages {
         stage('Build') {
             steps {
                 // Build Docker image
                 script {
-                    docker.build("weekTwoDevops")
+                    docker.build("weekTwoDevops .")
                     docker.stop('week2cont')
                     docker.rm('week2cont')
                 }
