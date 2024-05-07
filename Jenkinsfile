@@ -6,7 +6,7 @@ pipeline {
             steps {
                 // Build Docker image
                 script {
-                    docker.build("weekTwoDevops .")
+                    docker.build("weekTwoDevops")
                     docker.stop('week2cont')
                     docker.rm('week2cont')
                 }
