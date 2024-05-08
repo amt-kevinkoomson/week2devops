@@ -7,7 +7,7 @@ pipeline {
 
                 sh 'chmod +x ./mvnw && ./mvnw install'
                 script {
-                    docker.build('weekTwoDevops')
+                    docker.build('devops')
                     docker.stop('week2cont')
                     docker.rm('week2cont')
                 }
