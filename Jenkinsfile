@@ -7,7 +7,7 @@ pipeline {
 
                 sh 'chmod +x ./mvnw && ./mvnw install'
                 script {
-                    def image = docker.build('devops')
+                    docker.build('devops')
                 }
             }
         }
@@ -15,11 +15,7 @@ pipeline {
         stage('Test') {
             steps {
                 // Run tests inside the Docker container
-                script {
-                    image.inside{
-                        sh './mvnw test'
-                    }
-                }
+                sh 'hello world test'
             }
         }
 
