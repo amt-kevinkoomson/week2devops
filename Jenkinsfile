@@ -5,8 +5,9 @@ pipeline {
         stage('Build') {
             steps {
                 // Build Docker image
+                sh './mvnw install'
                 script {
-                    docker.build("weekTwoDevops")
+                    docker.build('weekTwoDevops')
                     docker.stop('week2cont')
                     docker.rm('week2cont')
                 }
@@ -18,7 +19,7 @@ pipeline {
                 // Run tests inside the Docker container
                 script {
                     def testContainer = docker.image('week2devops').inside {
-                        sh 'mvn test'
+                        sh './mvnw test'
                     }
                     // Remove the test container after tests complete
                     testContainer.remove()
