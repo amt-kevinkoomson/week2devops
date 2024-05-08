@@ -5,7 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 // Build Docker image
-                sh 'sudo ./mvnw install'
+                sh 'chmod +x ./mvnw && ./mvnw install'
                 script {
                     docker.build('weekTwoDevops')
                     docker.stop('week2cont')
