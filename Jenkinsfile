@@ -4,7 +4,6 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                git 'https://github.com/amt-kevinkoomson/week2devops'
 
                 sh 'chmod +x ./mvnw && ./mvnw install'
                 script {
