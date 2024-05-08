@@ -23,7 +23,7 @@ pipeline {
             steps {
                 // Run the Docker container
                 script {
-                    docker.image('week2devops').run('-p 4050:4050 --name week2cont')
+                    docker.image('devops').run('-p 4050:4050 --name week2cont')
                 }
             }
         }
