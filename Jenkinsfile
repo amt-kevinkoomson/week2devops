@@ -15,7 +15,7 @@ pipeline {
         stage('Test') {
             steps {
                 // Run tests inside the Docker container
-                sh 'hello world test'
+                sh 'echo hello world test'
             }
         }
 
