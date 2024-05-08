@@ -8,8 +8,6 @@ pipeline {
                 sh 'chmod +x ./mvnw && ./mvnw install'
                 script {
                     docker.build('devops')
-                    docker.stop('week2cont')
-                    docker.rm('week2cont')
                 }
             }
         }
@@ -18,7 +16,7 @@ pipeline {
             steps {
                 // Run tests inside the Docker container
                 script {
-                    def testContainer = docker.image('week2devops').inside {
+                    def testContainer = docker.image('devops').inside {
                         sh './mvnw test'
                     }
                     // Remove the test container after tests complete
