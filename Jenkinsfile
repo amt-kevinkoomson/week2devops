@@ -4,7 +4,8 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                // Build Docker image
+                git 'https://github.com/amt-kevinkoomson/week2devops'
+
                 sh 'chmod +x ./mvnw && ./mvnw install'
                 script {
                     docker.build('weekTwoDevops')
