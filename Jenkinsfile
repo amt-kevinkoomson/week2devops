@@ -21,7 +21,7 @@ pipeline {
                 script {
                     sh "docker build -t devopsimage ."
                     // Run Docker container
-                    docker.image(devopsimage).run("--user root --rm -it -v ${pwd()}:/mnt --name devops")
+                    sh "docker run --name devops --detach --publish 4050:4050 devopsimage"
                     // Execute command in running container
                     sh "docker exec devops curl localhost:4050 || true"
                 }
