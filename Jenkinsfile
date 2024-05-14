@@ -1,31 +1,23 @@
 pipeline {
     agent any
-
     stages {
         stage('Build') {
             steps {
-
-                sh 'chmod +x ./mvnw && ./mvnw install'
                 script {
-                    docker.build('devops')
+                    sh "docker stop devops || true"
+                    sh "docker rm devops || true"
+                    def dockerImage = 'localhost:5000/week2devops'
+
                 }
             }
         }
-
-        stage('Test') {
-            steps {
-                // Run tests inside the Docker container
-                sh 'echo hello world test'
-            }
-        }
-
         stage('Deploy') {
             steps {
-                // Run the Docker container
-                script {
-                    docker.image('devops').run('-p 4050:4050 --name week2cont')
-                }
+                docker.image(dockerImage).pull()
+                def containerId = docker.image(dockerImage).run("--user root --rm -it -v ${pwd()}:/mnt --name devops")
+                sh "docker exec devops 'curl localhost:4050'"
             }
         }
     }
+
 }
