@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                // sh 'chmod +x ./mvnw && ./mvnw install'
+                sh 'chmod +x ./mvnw && ./mvnw install'
                 sh "echo mock install"
                 script {
                     // Stop and remove existing container
