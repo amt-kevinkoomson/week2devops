@@ -13,7 +13,6 @@ public class HealthCheckController {
     @GetMapping("/")
     public HealthCheck healthCheck() {
         long uptime = (System.currentTimeMillis() - startTime)/1000;
-        //he
         return HealthCheck.builder()
                 .message("Service Running")
                 .uptime(uptime)
