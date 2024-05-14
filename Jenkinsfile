@@ -13,7 +13,9 @@ pipeline {
             }
         }
         stage('Test') {
-        sh 'echo Hello world'
+            steps {
+                sh 'echo Hello world'
+            }
         }
         stage('Deploy') {
             steps {
