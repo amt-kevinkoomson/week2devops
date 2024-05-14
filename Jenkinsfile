@@ -22,7 +22,7 @@ pipeline {
                 script {
                     sh "docker build -t devopsimage ."
                     // Run Docker container
-                    sh "docker run --name devops --publish 4050:4050 devopsimage"
+                    sh "docker run --name devops --detach --publish 4050:4050 devopsimage"
                     // Execute command in running container
                     sh "docker exec devops curl localhost:4050 || true"
                 }
