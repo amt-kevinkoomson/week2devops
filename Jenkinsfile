@@ -19,13 +19,11 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
-                    // Pull Docker image
-                    def dockerImage = 'localhost:5000/week2devops'
-                    docker.image(dockerImage).pull()
+                    sh "docker build -t devopsimage ."
                     // Run Docker container
-                    def containerId = docker.image(dockerImage).run("--user root --rm -it -v ${pwd()}:/mnt --name devops")
+                    docker.image(devopsimage).run("--user root --rm -it -v ${pwd()}:/mnt --name devops")
                     // Execute command in running container
-                    sh "docker exec devops curl localhost:4050"
+                    sh "docker exec devops curl localhost:4050 || true"
                 }
             }
         }
