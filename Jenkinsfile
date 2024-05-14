@@ -6,7 +6,7 @@ pipeline {
                 // sh 'chmod +x ./mvnw && ./mvnw install'
                 sh "echo mock install"
                 script {
-                    // Stop and remove existing container test
+                    // Stop and remove existing container
                     sh "docker stop devops || true"
                     sh "docker rm devops || true"
                 }
