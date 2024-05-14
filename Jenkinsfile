@@ -3,6 +3,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
+            sh 'chmod +x ./mvnw && ./mvnw install'
                 script {
                     sh "docker stop devops || true"
                     sh "docker rm devops || true"
@@ -10,6 +11,9 @@ pipeline {
 
                 }
             }
+        }
+        stage('Test') {
+        sh 'echo Hello world'
         }
         stage('Deploy') {
             steps {
