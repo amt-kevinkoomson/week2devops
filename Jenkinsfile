@@ -17,6 +17,12 @@ pipeline {
                 sh 'echo Hello world'
             }
         }
+         stage('SonarQube Analysis') {
+//             def mvn = tool 'Default Maven';
+            withSonarQubeEnv() {
+              sh "./mvnw clean verify sonar:sonar -Dsonar.projectKey=week3devops -Dsonar.projectName='week3devops'"
+            }
+          }
         stage('Deploy') {
             steps {
                 script {
